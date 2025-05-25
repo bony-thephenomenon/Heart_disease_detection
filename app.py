@@ -5,14 +5,19 @@ import numpy as np
 # Load the model
 model = joblib.load("model.pkl")
 
-st.title("Logistic Regression Predictor")
+st.title("❤️ Heart Disease Predictor")
 
-input_data = st.text_input("Enter comma-separated values:")
+input_data = st.text_input("Enter Patient's data to prdict:")
 
 if st.button("Predict"):
     try:
-        x = np.array([float(i) for i in input_data.split(",")]).reshape(1, -1)
-        prediction = model.predict(x)
-        st.write("Prediction:", prediction[0])
-    except:
-        st.error("Please enter valid comma-separated numbers.")
+        values = np.array([float(i) for i in input_data.split(",")]).reshape(1, -1)
+        prediction = model.predict(values)[0]
+
+        if prediction == 1:
+            st.error("⚠️ Person has Heart Disease")
+        else:
+            st.success("✅ Person does NOT have any Heart Disease")
+
+    except Exception as e:
+        st.error(f"Invalid input. Please enter 13 comma-separated values.\n\nError: {e}")
