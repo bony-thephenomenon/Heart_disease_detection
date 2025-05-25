@@ -5,7 +5,7 @@ import numpy as np
 # Load the model
 model = joblib.load("model.pkl")
 
-st.title("❤️ Heart Disease Predictor")
+st.title("❤️  Heart Disease Predictor ")
 
 input_data = st.text_input("Enter Patient's data to prdict:")
 
